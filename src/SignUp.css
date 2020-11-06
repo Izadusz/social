@@ -1,0 +1,28 @@
+.Signup {
+    display: flex;
+    position: relative;
+    flex-direction: column; 
+}
+
+.users-main {
+    position: absolute;
+    color: white;
+    left: 30%;
+    width: 400px;
+    text-align: center;
+    background-color: lightskyblue;           
+    text-align: center;
+    padding: 10px;     
+   
+}
+
+input, button {
+    padding: 10px;
+    text-align: center;
+    margin: 5px 50px;  
+       
+}
+
+.error {
+    color: red;
+}

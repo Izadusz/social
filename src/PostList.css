@@ -1,0 +1,10 @@
+.PostList {
+    display: flex;
+}
+.PostList ul.ThePost li {
+    border: 1px solid;
+    margin-top: 1px;
+    line-height: 2;
+    list-style: none;
+    padding: 5px 20px;
+}

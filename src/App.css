@@ -1,0 +1,14 @@
+.Router {
+  text-transform: capitalize;
+}
+
+.Menu {
+  list-style: none;
+  color:red;
+
+}
+.App ul {
+  list-style: none;
+  padding-left: 50px; 
+}
+
