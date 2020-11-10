@@ -10,13 +10,12 @@ import './App.css';
 import Home from './Home';
 import SignUp from './SignUp';
 import Login from './Login';
-// import HomeUsers from './HomeUsers'
 
 
 function App() {
   return (
     <div className="App">
-      <Router>
+       <Router>
         <nav>
           <ul>
             <li>
@@ -42,8 +41,7 @@ function App() {
             <SignUp />
           </Route>
         </Switch>
-      </Router>
-
+      </Router>    
     </div>
 
   );

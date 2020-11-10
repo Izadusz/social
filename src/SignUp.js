@@ -9,12 +9,16 @@ class SignUp extends Component {
 
         this.state = {
             users: [],
-            nameError: ''
+            nameError: '',
+            emailError: '',
+            passwordError: '',
+            passwordConfirmError: ''
         };
     }
 
     addUser = (event) => {
         event.preventDefault();
+
         if (this._inputName.value === '') {
             this.setState({ nameError: 'Uzupełnij pole' });
             return
@@ -111,8 +115,7 @@ class SignUp extends Component {
                     <button type="submit">Sign up</button>
                 </form>
 
-                <UsersList usersList={this.state.users} />
-
+                
             </div>
 
         );

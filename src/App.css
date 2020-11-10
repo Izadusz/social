@@ -1,14 +1,22 @@
-.Router {
-  text-transform: capitalize;
+#root {
+  margin: 0;
 }
 
-.Menu {
-  list-style: none;
-  color:red;
-
-}
 .App ul {
   list-style: none;
-  padding-left: 50px; 
+  font-weight: bold;
+  margin: 0;
+  width: 60%;
+}
+.App nav {
+  list-style: none;
+  height: 50px;
+  
+}
+li {
+  display: inline-block;
+  margin: 10px;
+  
+  
 }
 

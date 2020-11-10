@@ -1,20 +1,37 @@
-// import React from 'react';
-// import './PostList.css';
+import React from 'react';
+import './PostList.css';
+import './Home.css';
 
-// function PostList(props) {
+function PostList(props) {
 
+    let postList = props.postList;
 
-//     return(
-//         <div className="PostList">
+    let liElements = postList.map((postObj) => {
 
-//             <ul className="ThePost">
-//                 <li>Post Adama<div>Tekst 1</div></li>
-//                 <li>Post Ewy<div>Tekst 2</div></li>
+        return (
+            <div>
+                <input placeholder="Nowy post" type="text" ></input>
+                <button type="submit">Dodaj post</button>
+                <span className="PostsList">Ostatnie posty:</span>
+                <li key={postObj.id}>
+                    {/* <span className={`PostContent ${postObj.cssClass}`}>{postObj.last} {postObj.htmlArray}</span>
+              <span className="LatestContent">{postObj.content}</span>
+                    {/* <span className="PostId">{postObject.id}</span> */}
+                    {/* <span className="UserId">{postObject.user_id}</span><hr>qq</hr> */}
+                    
+                </li>
+            </div>
+        );
+    })
 
-//             </ul>
-//         </div>
+    return (
+        <div className="PostList">
+            <ul className="TheList">
+                <li></li>
+                {liElements}
+            </ul>
+        </div>
+    );
+}
 
-//     );
-// }
-
-// export default PostList;
+export default PostList;
