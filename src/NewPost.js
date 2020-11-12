@@ -8,18 +8,26 @@ class NewPost extends Component {
         super(props);
 
         this.state = {
-            posts: [],
+            newPosts: [],
         };
+    }
+
+    componentDidMount() {
+        this.addPost();
+        this.timerID = setInterval(() => this.addPost(), 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
     }
 
     addPost = (event) => {
         event.preventDefault();
-        console.log(this._inputContent.value);
+        // console.log(`this._inputContent.value`);
 
-        let date = new Date();
         let newInfo = {
             content: this._inputContent.value,
-            created_at: this.date,
+            // created_at: this.date,
 
         }
         const headers = {
@@ -41,17 +49,14 @@ class NewPost extends Component {
 
                 });
 
-
-
                 console.log(req.data);
             }).catch((error) => {
                 console.error(error);
             })
 
-        this._inputContent.value = '';
-        this.created_at = '';
+        this._inputContent.value = '';        
     }
-    // console.log(newInfo);
+   
 
     render() {
 
@@ -60,8 +65,9 @@ class NewPost extends Component {
                 <h1>Dodaj nowy post</h1>
                 <form onSubmit={this.addPost}>
                     <textarea ref={(element) => { this._inputContent = element; }}></textarea>
-                    <button onClick={this.addPost}>Dodaj post</button>
+                    <button onClick={this.addPost}>Dodaj post</button>                    
                 </form>
+                <PostList postList={this.state.addPost}/>
             </div>
 
         );
