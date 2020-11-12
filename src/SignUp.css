@@ -1,11 +1,9 @@
-.Signup {
-    display: flex;
+.Signup {    
     position: relative;
     flex-direction: column; 
 }
 
-.users-main {
-    position: absolute;
+.users-main {   
     color: white;
     left: 30%;
     width: 400px;

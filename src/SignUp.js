@@ -21,27 +21,26 @@ class SignUp extends Component {
 
         if (this._inputName.value === '') {
             this.setState({ nameError: 'Uzupełnij pole' });
-            return
+           
         } else {
             this.setState({ nameError: '' })
         }
 
         if (this._inputEmail.value === '') {
             this.setState({ emailError: 'Uzupełnij pole' });
-            return
+            
         } else {
             this.setState({ emailError: '' })
         }
 
         if (this._inputPassword.value === '') {
             this.setState({ passwordError: 'Uzupełnij pole' });
-            return
+        
         } else {
             this.setState({ passwordError: '' })
         }
         if (this._inputPasswordConfirm.value !== this._inputPassword.value) {
             this.setState({ passwordConfirmError: 'Hasła nie są takie same' });
-            return
         } else {
             this.setState({ nameError: '' })
         }
@@ -50,7 +49,6 @@ class SignUp extends Component {
             username: this._inputName.value,
             email: this._inputEmail.value,
             password: this._inputPassword.value,
-            confirmpassword: this._inputPasswordConfirm.value
         }
 
         const headers = {
@@ -64,39 +62,28 @@ class SignUp extends Component {
             { 'headers': headers })
             .then((req) => {
 
-                // your code :)      
+                // your code :)     
+                
+                if(!req.data.signedup) {
+
+
+                    let userExistMessage = (req.data.message.username)?req.data.message.username[0]:'';
+                    let emailExistMessage = (req.data.message.email)?req.data.message.email[0]:'';
+
+                    this.setState({ 
+                        nameError: userExistMessage,
+                        emailError: emailExistMessage
+                    });
+                }
 
                 console.log(req.data);
             }).catch((error) => {
                 console.error(error);
             })
 
-        this._inputName.value = '';
-        this._inputEmail.value = '';
-        this._inputPassword.value = '';
-        this._inputPasswordConfirm = '';
+    
 
     }
-
-    // let formFields = newUser;
-    // let allFields = false;
-    // let signNewUser = 
-    //     for (let i = 0; i < formFields.length; i++) {
-    //     if (formFields[i].value === '') {
-    //         allFields = false;
-    //         formFields[i].classList.add('error');
-    //     } else {
-    //         allFields = true;
-    //         formFields[i].classList.remove('error');
-    //     }
-    // }
-
-    // if (allFields) {
-    //     signNewUser(newUser);
-    // } else {
-    //     appointmentMessage.classList.add('error');
-    //     appointmentMessage.innerText = `Wypełnij wymagane pola`;
-    // }
 
     render() {
 

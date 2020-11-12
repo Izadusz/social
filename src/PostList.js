@@ -1,6 +1,7 @@
 import React from 'react';
 import './PostList.css';
 import './Home.css';
+import NewPost from './NewPost';
 
 function PostList(props) {
 
@@ -9,28 +10,24 @@ function PostList(props) {
     let liElements = postList.map((postObj) => {
 
         return (
-            <div>
-                <input placeholder="Nowy post" type="text" ></input>
-                <button type="submit">Dodaj post</button>
-                <span className="PostsList">Ostatnie posty:</span>
-                <li key={postObj.id}>
-                    {/* <span className={`PostContent ${postObj.cssClass}`}>{postObj.last} {postObj.htmlArray}</span>
-              <span className="LatestContent">{postObj.content}</span>
-                    {/* <span className="PostId">{postObject.id}</span> */}
-                    {/* <span className="UserId">{postObject.user_id}</span><hr>qq</hr> */}
-                    
-                </li>
+
+            <div key={postObj.id}>
+                <h3>{postObj.user.username}</h3>
+                <p>{postObj.content}</p>
             </div>
+
         );
     })
 
     return (
-        <div className="PostList">
-            <ul className="TheList">
-                <li></li>
-                {liElements}
-            </ul>
+        <div className="TheList">
+            <div className="posts">
+                <NewPost />
+            </div>
+            <h2 className="PostsList">Ostatnie posty:</h2>
+            {liElements}
         </div>
+
     );
 }
 

@@ -18,18 +18,26 @@
     
 }
 .main-section {
-    display: flex; 
-      
+    position: relative;
+    margin: 10px;
+    width: 60%;
+}
+
+.post-list {
+    background-color:rgb(223, 230, 238);
+    position: absolute;
 }
 
 .sidenav {
     background-color: lightgrey; 
-    height: auto;
-    margin: 0 10px;     
+    height: auto;   
     padding: 20px;
     width: 40%;
+    left: 100%;
     color: white;
-    border-radius: 25px;
+    border-radius: 25px; 
+    position: absolute;
+    margin-left: 40px;
 }
 
 

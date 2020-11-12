@@ -71,8 +71,7 @@ class Login extends Component {
                         <input ref={(element) => { this._inputPassword = element; }} type="text" placeholder="Enter password"></input>
                         <span>{this.state.passwordError}</span>                        
                         <button type="submit">Log in</button>
-                    </form>
-                    {/* <UsersList usersList={this.state.users} /> */}
+                    </form>                   
                 </div>
             );
         }

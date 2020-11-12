@@ -14,81 +14,55 @@ class Home extends Component {
 
         this.state = {
             postList: [],
-            // latestPostList: [],
+            lastPostDate: new Date().toISOString()
         };
     }
 
     componentDidMount() {
         this.getPostData();
-        // this.timerID = setInterval(() => this.getPostData(),);
     }
 
-    // componentWillUnmount() {
-    //     clearInterval(this.timerID);
-    // }
+
 
     getPostData = () => {
 
         axios.post('https://akademia108.pl/api/social-app/post/latest')
             .then(res => {
                 const latest = res.data;
+                this.setState({
+                    postList: latest,
+                    lastPostDate: latest[9].updated_at
+                })
 
-                this.setState((state) => {
-                    let newPostList = [];
+            });
+    }
 
-                    for (const [latest, post] of Object.entries(latest)) {
-                        let lastPostObj = state.postList.find((postObj) => {
-                            return (postObj.content === latest);
+    getNextPosts = () => {
 
-                        })
+        axios.post(
+            'https://akademia108.pl/api/social-app/post/older-then',
+            {
+                "date": this.state.lastPostDate
+            }
 
-                        let newPostObj = {
-                            posts: latest,
-                            id: post.id,
-                            userID: post.user_id,
-                            content: post.content
-                        }
+        ).then(res => {
+            const next = res.data;
 
-                        if (lastPostObj !== undefined) {
-
-                            if (newPostObj.lastContent) {
-                                newPostObj.htmlArray = String;
-                           
-                            }                       
-                        }
-
-                        newPostList.push(newPostObj);
+            if (next && next.length > 0) {
+                this.setState(prevState => {
+                    return {
+                        postList: prevState.postList.concat(next),
+                        lastPostDate: next[next.length - 1].created_at
                     }
 
-                    console.log(newPostList);
-
-                    return ({
-                        postList: newPostList
-                    })
                 });
 
-                this.filterPostList();
+            }
+            console.log(next);
 
-            });
-    }
-
-    filterPostList = () => {
-        this._inputFilter.value = this._inputFilter.value.trim().toUpperCase();
-
-        this.setState((state) => {
-            let newlatestPostList = state.postList.filter((postObj) => {
-
-                return (postObj.content.includes(this._inputFilter.value));
-            });
-
-            return ({
-                latestPostList: newLatestPostList
-            });
         });
-
-    //     // console.log(this._inputFilter.value);
+        console.log('Działa');
     }
-
 
     render() {
 
@@ -97,13 +71,14 @@ class Home extends Component {
                 <header className="home-header">
                     <h1>Home</h1>
                 </header>
-                <div className="main-section">                    
-                    <PostList />
-                    {/* <input ref={element => this._inputFilter = element} on change={this.filterPostList} type="text" /> */}
-                    {/* <PostList postList={this.state.LatestPostList} /> */}                    
+                <div className="main-section">
+                    <div className="post-list">                        
+                        <PostList postList={this.state.postList} />
+                        <button onClick={this.getNextPosts}>Pobierz kolejne</button>
+                    </div>
                     <div className="sidenav">Users List: </div>
                 </div>
-                {/* <UsersList usersList={this.state.users} />  */}
+
             </div>
         );
 

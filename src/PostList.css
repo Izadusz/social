@@ -1,22 +1,15 @@
-.posts ul {
-    border: 0;
-    position: absolute;
-    padding: 0;
-}
-
-.posts li {
-    border: 2px solid lightgray;    
+.TheList {       
     margin: 0;
-    line-height: 2;
-    list-style: none;
-    padding: 5px 20px;     
-    
-}
-.posts li {
-    font-weight: 250;
-      
+    line-height: 2;    
+    padding: 5px 20px;
+    font-weight: 250;    
 }
 
-.posts {
-    width: 60%;
+.post-list button {
+    border: 0;
+    background-color: lightskyblue; 
+    border-radius: 25px;
+    margin-right: 0px;    
+    width: 200px;
 }
+
